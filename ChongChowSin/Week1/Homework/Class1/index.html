@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Week 1 - Class 1</title>
-    <script type="text/javascript" src="custom.js"></script>
+    <script src="pluralize.js"></script>
+    <script src="custom.js"></script>
 </head>
 <body>
     <h1>Please open JS console to see output.</h1>
@@ -19,12 +20,12 @@
     <div>
         <h2>Conditionals</h2>
         <button onclick="WorldTranslator()">World Translator</button>
-        <button onclick="GradeAssigner()">The Grade Assigner</button>
+        <input id="GradeAssigner" placeholder="Score"><button onclick="GradeAssigner()">The Grade Assigner</button>
         <button onclick="AirCon()">Air Conditioning</button>
         <button onclick="VoteGovernment()">You and Your Government</button>
-        <button onclick="Golf()">Golf</button>
+        <input id="par" placeholder="par"><input id="gScore" placeholder="Score"><button onclick="Golf()">Golf</button>
         <button onclick="SergeSays()">Serge Says</button>
-        <button onclick="Pluralizer()">The Pluralizer</button>
+        <input id="noun" placeholder="noun"><input id="number" placeholder="number"><button onclick="Pluralizer()">The Pluralizer</button>
     </div>
     <div>
         <h2>Loops</h2>

@@ -59,27 +59,32 @@ function WorldTranslator(){
     }
 }
 
-function GradeAssigner(s){
+function GradeAssigner(){
+    let s = document.querySelector('[id="GradeAssigner"]').value;
+    GradeAssignerLogic(s);
+}
+
+function GradeAssignerLogic(s){
     // if(!s)
     //     s = parseFloat(prompt("Your score:"));
 
     if(s >= 80)
-        logOrAlert(`You got 'A'`);
+        logOrAlert(`Score: ${s}, You got 'A'`);
     else if(s >= 70)
-        logOrAlert(`You got 'B'`);
+        logOrAlert(`Score: ${s}, You got 'B'`);
     else if(s >= 50)
-        logOrAlert(`You got 'C'`);
+        logOrAlert(`Score: ${s}, You got 'C'`);
     else if(s >= 40)
-        logOrAlert(`You got 'D'`);
+        logOrAlert(`Score: ${s}, You got 'D'`);
     else if(s >= 20)
-        logOrAlert(`You got 'E'`);
+        logOrAlert(`Score: ${s}, You got 'E'`);
     else
-        logOrAlert(`You 'F'ailed`);
+        logOrAlert(`Score: ${s}, You 'F'ailed`);
 }
 
 function AirCon(){
-    const hotTemp = 38;
-    let temp = parseFloat(prompt("Temperature:"));
+    const hotTemp = 28;
+    let temp = parseFloat(prompt(`Temperature: (Current Hot Temperature: ${hotTemp})`));
     let functional = (prompt("A/C Function? (T/F)")).toUpperCase() == "T" ? true: false;
     if(functional && temp >= hotTemp){
         logOrAlert(`Turn on the A/C Please`);
@@ -105,26 +110,32 @@ function VoteGovernment(){
         logOrAlert(`You can't vote yet`);
 }
 
-function Golf(par, score){
+function Golf(){
+    let p = document.querySelector('[id="par"]').value;
+    let s = document.querySelector('[id="gScore"]').value;
+    GolfLogic(p,s);
+}
+
+function GolfLogic(par, score){
     // if(!par)
     //     par = 18; //not sure
     // if(!score)
     //     score = prompt("Score:");
 
     if(score == 1)
-        logOrAlert(`Hole in one`);
+        logOrAlert(`Score:${score}; Par: ${par} Nickname: Hole in one`);
     else if(score <= par -2)
-        logOrAlert(`Eagle`);
+        logOrAlert(`Score:${score}; Par: ${par} Nickname: Eagle`);
     else if(score == (par-1))
-        logOrAlert(`Birdie`);
+        logOrAlert(`Score:${score}; Par: ${par} Nickname: Birdie`);
     else if(score == par)
-        logOrAlert(`Par`);
+        logOrAlert(`Score:${score}; Par: ${par} Nickname: Par`);
     else if(score == (par+1))
-        logOrAlert(`Bogey`);
+        logOrAlert(`Score:${score}; Par: ${par} Nickname: Bogey`);
     else if(score ==(par+2))
-        logOrAlert(`Double Bogey`);
+        logOrAlert(`Score:${score}; Par: ${par} Nickname: Double Bogey`);
     else if(score >= (par+3))
-        logOrAlert(`Not sure`);
+        logOrAlert(`Score:${score}; Par: ${par} Nickname: Not sure`);
     else 
         logOrAlert("Invalid input");
 }
@@ -132,29 +143,35 @@ function Golf(par, score){
 //Refer link below
 //https://stackoverflow.com/questions/17572873/how-can-i-check-if-a-string-is-all-uppercase-in-javascript
 String.prototype.isUpperCase = function() {
-    return this.valueOf().toUpperCase() === this.valueOf();
+    return this.valueOf().trim().toUpperCase() === this.valueOf();
 };
 
 function SergeSays(){
     let input = prompt("Enter message:");
     if(input.endsWith('?'))
         logOrAlert(`Sure.`);
+    else if(!input.trim())
+        logOrAlert(`Fine. Be that way!`)
     else if(input.isUpperCase())
         logOrAlert(`Woah, chill out!`)
-    else if(!input)
-        logOrAlert(`Fine. Be that way!`)
     else
         logOrAlert(`Whatever.`)
 }
 
 //using library from https://github.com/plurals/pluralize
-import Pluralize from 'pluralize';
+// import Pluralize from 'pluralize';
 
-function Pluralizer(noun,num){
+function Pluralizer(){
+    let n = document.querySelector('[id="noun"]').value;
+    let d = document.querySelector('[id="number"]').value;
+    logOrAlert(PluralizerLogic(n,d));
+}
+
+function PluralizerLogic(noun,num){
     // let noun = prompt("Enter noun:")
     // let num = parseInt(prompt("Enter number:"));
 
-    return Pluralize(noun,num);
+    return pluralize(noun,num);
 }
 
 //https://www.geeksforgeeks.org/rock-paper-and-scissor-game-using-javascript/
@@ -176,12 +193,12 @@ function MultipleTable(){
 
 function GradeAssignerLoop(){
     for(i=60;i<=100;i++)
-        GradeAssigner(i);
+        GradeAssignerLogic(i);
 }
 
 function GolfLoop(){
     for(i=1;i<=8;i++)
-        Golf(5,i);
+        GolfLogic(5,i);
 }
 
 function BottlesBeer(){
