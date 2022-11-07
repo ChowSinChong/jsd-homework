@@ -156,16 +156,70 @@ function search(prop,value){
 }
 
 //Transit Application
-const stations = ["Museum", "St. James", "Circular Quay", "Wynyard", "Townhall", "Central", "Redfern", "Macdonaldtown", "Newtown"];
+/* 
+- Provide station name; begin, end
+- concat arrays into 1 array */
+
+// const stations = ["Museum", "St. James", "Circular Quay", "Wynyard", "Townhall", "Central", "Redfern", "Macdonaldtown", "Newtown"];
+const stations = [["Museum", "St. James", "Circular Quay"],
+        ["Circular Quay", "Wynyard", "Townhall", "Central"],
+        ["Central", "Redfern", "Macdonaldtown", "Newtown"]];
+
+function findStationIndex(stationsArr,value){
+    let index = stationsArr.findIndex(x => x == value)
+    if(index == -1)
+        alert(`Station not found`)
+    return index    
+}
 
 function travelFrom(start,end){
-    let a = stations.findIndex(x => x == start);
-    let b = stations.findIndex(x => x == end);
+    //https://dev.to/soyleninjs/3-ways-to-remove-duplicates-in-an-array-in-javascript-259o#:~:text=3%20ways%20to%20remove%20duplicates%20in%20an%20Array,Using%20the%20includes%20%28%29%20and%20forEach%20%28%29%20methods   
+    let sLine = [...new Set(stations.join().split(','))];
     
+    let a = findStationIndex(sLine, start);
+    let b = findStationIndex(sLine, end);
+
     let num = b-a;
+    let numSign = Math.sign(num);
+    let stops = numSign === -1? sLine.slice(b,a+1).reverse() : sLine.slice(a,b+1);
     //To make it positive
-    numStop = num * Math.sign(num);
-    let stops = Math.sign(num) === -1? stations.slice(b,a+1).reverse() : stations.slice(a,b+1);
+    numStop = num * numSign;
     console.log(`To go from '${start}' to '${end}' - you'll need to go through ${numStop} stops`)
     console.log(stops.join(' - '));
 }
+
+/* Week2 (Week1-class2) */
+const x = (str) => {
+    console.log(`${str}!`)
+}
+
+function multiply(x,y){
+    console.log(`${x*y}`)
+}
+
+
+// const featured = ['Deep Dish', 'Pepperoni', 'Hawaiian'];
+// const specialty = ['Meatzza', 'Spicy Mama', 'Margherita'];
+
+// const pizzas = [...featured, 'veg pizza', ...specialty];
+
+// console.log(pizzas);
+
+
+var obj1 = { foo: 'bar', x: 42 };
+var obj2 = { foo: 'baz', y: 13 };
+
+var clonedObj = { ...obj1 }; // = obj1
+console.log(clonedObj)
+
+var mergedObj = { ...obj1, ...obj2 }; // merged & add new keys
+console.log(mergedObj)
+
+let blog = [
+    { title: "Blog Heading One", content: "Lorem ipsum", author: "Tilak" },
+    { title: "Blog Heading Two", content: "Lorem ipsum", author: "Shafiq" },
+    { title: "Blog Heading Three", content: "Lorem ipsum", author: "Nurain" },
+    { title: "Blog Heading Four", content: "Lorem ipsum", author: "Veemelia" },
+  ];
+
+blog.forEach(e => {console.log(`Tile: ${e.title}, Content: ${e.content}, Written By: ${e.author}`)})
