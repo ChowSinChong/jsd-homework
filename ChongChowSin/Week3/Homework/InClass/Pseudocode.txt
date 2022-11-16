@@ -1,0 +1,19 @@
+// Rock, Paper, Scissors
+START
+	- MaxGames is 3
+	- WHILE gameCount less or equal 3
+		- User select and STORE user selection (Rock, Paper, Scissors)
+		- Randomize COM selection (Rock, Paper, Scissors)
+		- If (User.selection == Rock && COM.selection == Scissors) OR (User.selection == Paper && COM.selection == Rock) OR (User.selection == Scissors && COM.selection == Paper)
+			- User Win
+		- Else
+			- COM Win
+		- gameCount++
+	- END WHILE
+END
+
+// Dice roll
+START
+    - User input how many sides for the Dice
+    - Get a random number in range 1 until user input
+    - Display the number
